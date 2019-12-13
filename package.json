@@ -1,0 +1,19 @@
+{
+  "name": "db-challenge",
+  "version": "1.0.0",
+  "description": "sprint challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coryortega/node-db-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coryortega/node-db-challenge/issues"
+  },
+  "homepage": "https://github.com/coryortega/node-db-challenge#readme"
+}
