@@ -14,6 +14,7 @@ exports.up = function(knex) {
         tbl.increments();
         tbl.string('resource_name', 255)
         .notNullable()
+        .unique()
         tbl.string('resource_description')
         .nullable()
         tbl.integer('project_id')

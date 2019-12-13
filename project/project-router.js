@@ -7,17 +7,19 @@ const router = express.Router();
 router.get('/', (req, res) => {
   Project.find()
   .then(project => {
-    project.forEach(e => {if(e.completed === 0){
-        res.json([{completed: false, id:e.id, project_name: e.project_name, project_description: e.project_description}])
+
+    const newProjects = project.map(e => { if(e.completed === 0){
+        return {completed: false, id:e.id, project_name: e.project_name, project_description: e.project_description}
     } else {
-        res.json([{completed: true, id:e.id, project_name: e.project_name, project_description: e.project_description}])
+        return {completed: true, id:e.id, project_name: e.project_name, project_description: e.project_description}
     }})
+    res.status(200).json(newProjects)
   })
+
   .catch(err => {
     res.status(500).json({ message: 'Failed to get projects' });
   });
 });
-
 
 
 router.post('/', (req, res) => {
@@ -34,15 +36,13 @@ router.post('/', (req, res) => {
 
   router.get('/tasks', (req, res) => {
     Project.findTasks()
-    // .then(task => {
-    //   res.json(task);
-    // })
     .then(task => {
-        task.forEach(e => {if(e.task_completed === 0){
-            res.json([{task_completed: false, project_name: e.project_name, project_description: e.project_description, task_notes: e.task_notes, task_description: e.task_description}])
+        const newTasks = task.map(e => { if(e.completed === 0){
+            return {completed: false, id:e.id, project_name: e.project_name, project_description: e.project_description}
         } else {
-            res.json([{task_completed: true, project_name: e.project_name, project_description: e.project_description, task_notes: e.task_notes, task_description: e.task_description}])
+            return {completed: true, id:e.id, project_name: e.project_name, project_description: e.project_description}
         }})
+        res.status(200).json(newTasks)
       })
     .catch(err => {
       res.status(500).json({ message: 'Failed to get task' });
