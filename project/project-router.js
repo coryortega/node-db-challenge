@@ -7,13 +7,18 @@ const router = express.Router();
 router.get('/', (req, res) => {
   Project.find()
   .then(project => {
-    // res.json([project[0].id, project[0].project_name]);
-    res.json(project);
+    project.forEach(e => {if(e.completed === 0){
+        res.json([{completed: false, id:e.id, project_name: e.project_name, project_description: e.project_description}])
+    } else {
+        res.json([{completed: true, id:e.id, project_name: e.project_name, project_description: e.project_description}])
+    }})
   })
   .catch(err => {
     res.status(500).json({ message: 'Failed to get projects' });
   });
 });
+
+
 
 router.post('/', (req, res) => {
     const projectData = req.body;
@@ -29,9 +34,16 @@ router.post('/', (req, res) => {
 
   router.get('/tasks', (req, res) => {
     Project.findTasks()
+    // .then(task => {
+    //   res.json(task);
+    // })
     .then(task => {
-      res.json(task);
-    })
+        task.forEach(e => {if(e.task_completed === 0){
+            res.json([{task_completed: false, project_name: e.project_name, project_description: e.project_description, task_notes: e.task_notes, task_description: e.task_description}])
+        } else {
+            res.json([{task_completed: true, project_name: e.project_name, project_description: e.project_description, task_notes: e.task_notes, task_description: e.task_description}])
+        }})
+      })
     .catch(err => {
       res.status(500).json({ message: 'Failed to get task' });
     });
