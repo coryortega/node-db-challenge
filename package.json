@@ -1,0 +1,26 @@
+{
+  "name": "db-challenge",
+  "version": "1.0.0",
+  "description": "sprint challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "run",
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coryortega/node-db-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coryortega/node-db-challenge/issues"
+  },
+  "homepage": "https://github.com/coryortega/node-db-challenge#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.20.4",
+    "nodemon": "^2.0.2",
+    "sqlite3": "^4.1.1"
+  }
+}
